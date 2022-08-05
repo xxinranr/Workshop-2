@@ -1,4 +1,4 @@
-﻿// COMP30019 - Graphics and Interaction
+// COMP30019 - Graphics and Interaction
 // (c) University of Melbourne, 2022
 
 using System.Linq;
@@ -8,9 +8,10 @@ using UnityEngine;
 // MeshFilter component on the same game object. If it doesn't exist, the Unity
 // engine will create one automatically.
 [RequireComponent(typeof(MeshFilter))]
-public class GenerateCube : MonoBehaviour
+public class GeneratePyramid : MonoBehaviour
 {
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         // First we'll get the MeshFilter attached to this game object, in the
         // same way that we got the MeshRenderer component last week.
@@ -27,7 +28,7 @@ public class GenerateCube : MonoBehaviour
         // - https://docs.unity3d.com/ScriptReference/Mesh.html
         var mesh = new Mesh
         {
-            name = "Cube"
+            name = "Pyramid"
         };
 
         // Step 1: Define the vertices. These are "points" in 3D space that
@@ -37,61 +38,34 @@ public class GenerateCube : MonoBehaviour
         // depends on the way the mesh surface itself is defined (step 3).
         mesh.SetVertices(new[]
         {
-            // Top face
-            new Vector3(-1.0f, 1.0f, -1.0f),
-            new Vector3(-1.0f, 1.0f, 1.0f),
-            new Vector3(1.0f, 1.0f, 1.0f),
-            
-            new Vector3(-1.0f, 1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, 1.0f),
-            new Vector3(1.0f, 1.0f, -1.0f),
-
-            // Bottom face
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, -1.0f, 1.0f),
-            new Vector3(-1.0f, -1.0f, 1.0f),
-            
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, -1.0f, 1.0f),
-
-            // Left face
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3(-1.0f, -1.0f, 1.0f),
-            new Vector3(-1.0f, 1.0f, 1.0f),
-            
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3(-1.0f, 1.0f, 1.0f),
-            new Vector3(-1.0f, 1.0f, -1.0f),
-
-            // Right face
-            new Vector3(1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, 1.0f),
-            new Vector3(1.0f, -1.0f, 1.0f),
-            
-            new Vector3(1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, 1.0f),
-
-            // Define more vertices here!
-
             // Front face
-            new Vector3(-1.0f, 1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, -1.0f),
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3(1.0f, 1.0f, -1.0f),
-            new Vector3(1.0f, -1.0f, -1.0f),
+            new Vector3(0.0f, 1.0f, 0.0f),
+            new Vector3(0.5f, 0.0f, -0.5f),
+            new Vector3(-0.5f, 0.0f, -0.5f),
 
             // Back face
-            new Vector3(-1.0f, 1.0f, 1.0f),
-            new Vector3(1.0f, -1.0f, 1.0f),
-            new Vector3(1.0f, 1.0f, 1.0f),
+            new Vector3(0.5f, 0.0f, 0.5f),
+            new Vector3(0.0f, 1.0f, 0.0f),
+            new Vector3(-0.5f, 0.0f, 0.5f),
+
+            // Bottom face
+            new Vector3(-0.5f, 0.0f, -0.5f),
+            new Vector3(0.5f, 0.0f, 0.5f),
+            new Vector3(-0.5f, 0.0f, 0.5f),
             
-            new Vector3(-1.0f, 1.0f, 1.0f),
-            new Vector3(-1.0f, -1.0f, 1.0f),
-            new Vector3(1.0f, -1.0f, 1.0f),
+            new Vector3(-0.5f, 0.0f, -0.5f),
+            new Vector3(0.5f, 0.0f, -0.5f),
+            new Vector3(0.5f, 0.0f, 0.5f),
+
+            // Left face
+            new Vector3(0.0f, 1.0f, 0.0f),
+            new Vector3(-0.5f, 0.0f, -0.5f),
+            new Vector3(-0.5f, 0.0f, 0.5f),
+
+            // Right face
+            new Vector3(0.5f, 0.0f, 0.5f),
+            new Vector3(0.5f, 0.0f, -0.5f),
+            new Vector3(0.0f, 1.0f, 0.0f)
         });
 
         // Step 2: Define the vertex colours. There is a one-to-one index
@@ -99,61 +73,34 @@ public class GenerateCube : MonoBehaviour
         // so the length of both arrays must be the same.
         mesh.SetColors(new[]
         {
-            // Top face
-            Color.red,
-            Color.red,
-            Color.red,
-            
-            Color.red,
-            Color.red,
-            Color.red,
+            // Front Face
+            Color.green, 
+            Color.green,
+            Color.green,
+
+            // Back Face
+            Color.gray,
+            Color.gray,
+            Color.gray,
 
             // Bottom face
             Color.red,
             Color.red,
             Color.red,
-            
+
             Color.red,
             Color.red,
             Color.red,
 
             // Left face
-            Color.yellow, 
-            Color.yellow,
-            Color.yellow,
-            
-            Color.yellow,
-            Color.yellow,
-            Color.yellow,
+            Color.blue,
+            Color.blue,
+            Color.blue,
 
             // Right face
             Color.yellow, 
             Color.yellow,
-            Color.yellow,
-            
-            Color.yellow,
-            Color.yellow,
-            Color.yellow,
-            
-            // Define more colours here!
-
-            // Front Face
-            Color.blue,
-            Color.blue,
-            Color.blue,
-
-            Color.blue,
-            Color.blue,
-            Color.blue,
-
-            // Back Face
-            Color.blue,
-            Color.blue,
-            Color.blue,
-
-            Color.blue,
-            Color.blue,
-            Color.blue
+            Color.yellow
         });
 
         // Step 3: Define the indices. The indices "connect" vertices together
