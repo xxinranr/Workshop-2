@@ -2,6 +2,7 @@
 // (c) University of Melbourne, 2022
 
 using System.Linq;
+using System;
 using UnityEngine;
 
 // Note: The attribute below specifies that this component must coexist with a
@@ -167,6 +168,7 @@ public class GenerateCube : MonoBehaviour
         // the above vertex and colour arrays just like this! We only need to
         // generate a range of integers from 0 to the # of vertices - 1:
         var indices = Enumerable.Range(0, mesh.vertices.Length).ToArray();
+        Array.Reverse(indices);
         mesh.SetIndices(indices, MeshTopology.Triangles, 0);
         
         // Note that the topology argument specifies that we are in fact
